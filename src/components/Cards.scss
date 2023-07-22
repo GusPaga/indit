@@ -1,0 +1,21 @@
+#cards {
+
+    a {
+        width: 100%;
+    }
+
+    .card {
+        border: none;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 30px;
+        text-decoration: none;
+        justify-items: center;
+
+        img {
+            width: 250px;
+            border-radius: 150px 150px 150px 150px;
+        }
+    }
+}
