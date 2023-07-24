@@ -6,6 +6,7 @@ import DataReducer from './dataReducer';
 const DataState = (props) => {
 	const initialState = {
 		allData: [],
+		filteredData: [],
 	};
 	const [state, dispatch] = useReducer(DataReducer, initialState);
 
@@ -37,8 +38,60 @@ const DataState = (props) => {
 			console.log({ 'error in getData': error.message });
 		}
 	};
+
+	const FindNeedle = (haystack, needle) => {
+		for (let i = 0; i < haystack.length; i++) {
+			if (haystack.slice(i, needle.length + i) === needle) return i;
+		}
+		return -1;
+	};
+
+	const filterByName = (name) => {
+		// console.log("input in filterByName", name);
+		// console.log("data in filterByName", allData);
+
+		try {
+			if (!name || name === ' ') {
+				return state.allData;
+			}
+			// eslint-disable-next-line array-callback-return
+			const search = state.allData.filter((e) => {
+				if (
+					FindNeedle(e.author.toLocaleLowerCase(), name.toLocaleLowerCase()) >
+					-1
+				) {
+					return e;
+				}
+				if (
+					FindNeedle(e.name.toLocaleLowerCase(), name.toLocaleLowerCase()) > -1
+				) {
+					return e;
+				}
+				if (
+					FindNeedle(e.title.toLocaleLowerCase(), name.toLocaleLowerCase()) > -1
+				) {
+					return e;
+				}
+			});
+			//   console.log("filter", search);
+			dispatch({
+				type: 'FIND_DATA',
+				payload: search,
+			});
+		} catch (error) {
+			console.log('Fail filterByName', error.message);
+		}
+	};
+
 	return (
-		<DataContext.Provider value={{ allData: state.allData, getData }}>
+		<DataContext.Provider
+			value={{
+				allData: state.allData,
+				filteredData: state.filteredData,
+				getData,
+				filterByName,
+			}}
+		>
 			{props.children}
 		</DataContext.Provider>
 	);

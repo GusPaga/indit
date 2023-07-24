@@ -1,11 +1,12 @@
-import DataContext from '../../../context/podCast/dataContext';
-import { useContext, useEffect } from 'react';
-import { Loader } from '../../Loader';
-import { Cards } from '../../Cards';
 import './Home.scss';
+import { Cards } from '../../Cards';
+import { Loader } from '../../Loader';
+import { Search } from '../../Search/Search';
+import { useContext, useEffect } from 'react';
+import DataContext from '../../../context/podCast/dataContext';
 
 const Home = () => {
-	const { allData, getData } = useContext(DataContext);
+	const { allData, getData, filteredData } = useContext(DataContext);
 
 	useEffect(() => {
 		getData();
@@ -14,14 +15,24 @@ const Home = () => {
 
 	console.log('allData in Home', allData);
 	return (
-		<div id='cards' className='container rounded'>
-			<div className='card'>
-				{!allData && <Loader />}
-				{allData?.map((e) => {
-					return <Cards key={e.id} name={e.name} img={e.imageL} />;
-				})}
+		<>
+			<Search />
+			<div id='cards' className='container-fluid rounded'>
+				<div className='card p-5'>
+					{!allData && <Loader />}
+					{filteredData?.map((e) => {
+						return (
+							<Cards
+								key={e.id}
+								name={e.name}
+								img={e.imageL}
+								author={e.author}
+							/>
+						);
+					})}
+				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 export default Home;
