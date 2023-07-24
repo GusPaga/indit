@@ -16,8 +16,8 @@ export const Search = () => {
 		filterByName(input, allData);
 	};
 
-	console.log('data in Search', filteredData);
-	console.log('input in search', input);
+	// console.log('data in Search', filteredData);
+	//	console.log('input in search', input);
 
 	return (
 		<div id='search' className='container'>

@@ -5,6 +5,9 @@ import DataReducer from './dataReducer';
 
 const DataState = (props) => {
 	const initialState = {
+		track: {},
+		author: {},
+		detail: [],
 		allData: [],
 		filteredData: [],
 	};
@@ -83,13 +86,77 @@ const DataState = (props) => {
 		}
 	};
 
+	const getDetail = async (id) => {
+		// console.log("id in data state", id);
+		try {
+			const URL = `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20`;
+
+			const response = await fetch(URL);
+			const data = await response.json();
+			//console.log('data in getDetail', data.results);
+			const deleteOne = () => {
+				const wrapperType = 'track';
+				const index = data.results.findIndex(
+					(e) => e.wrapperType === wrapperType,
+				);
+
+				//function to remove index "0"
+				if (index !== -1) {
+					const newData = [...data.results];
+					newData.splice(index, 1);
+					return newData;
+				}
+			};
+			const results = deleteOne(data);
+			//console.log('results', results);
+
+			dispatch({
+				type: 'FIND_DETAIL',
+				payload: results,
+			});
+		} catch (error) {
+			console.log({ 'Error in getDetail': error.message });
+		}
+	};
+
+	const getAuthor = async (id) => {
+		try {
+			const findAuthor = state.allData.filter((e) => e.id === id);
+			dispatch({
+				type: 'FIND_AUTHOR',
+				payload: findAuthor[0],
+			});
+		} catch (error) {
+			console.log({ 'Error in getDetail': error.message });
+		}
+	};
+
+	const getEpisode = async (trackId) => {
+		try {
+			// eslint-disable-next-line eqeqeq
+			const findEpisode = state.detail.filter((e) => e.trackId == trackId);
+			dispatch({
+				type: 'FIND_EPISODE',
+				payload: findEpisode[0],
+			});
+		} catch (error) {
+			console.log({ 'Error in getEpisode': error.message });
+		}
+	};
+
 	return (
 		<DataContext.Provider
 			value={{
+				getData,
+				getAuthor,
+				getDetail,
+				getEpisode,
+				filterByName,
+				track: state.track,
+				author: state.author,
+				detail: state.detail,
 				allData: state.allData,
 				filteredData: state.filteredData,
-				getData,
-				filterByName,
 			}}
 		>
 			{props.children}

@@ -1,4 +1,10 @@
-import { FIND_DATA, GET_DATA } from '../types';
+import {
+	FIND_AUTHOR,
+	FIND_DATA,
+	FIND_DETAIL,
+	FIND_EPISODE,
+	GET_DATA,
+} from '../types';
 
 const DataReducer = (state, action) => {
 	const { payload, type } = action;
@@ -13,6 +19,21 @@ const DataReducer = (state, action) => {
 			return {
 				...state,
 				filteredData: payload,
+			};
+		case FIND_DETAIL:
+			return {
+				...state,
+				detail: payload,
+			};
+		case FIND_AUTHOR:
+			return {
+				...state,
+				author: payload,
+			};
+		case FIND_EPISODE:
+			return {
+				...state,
+				track: payload,
 			};
 		default: {
 			return {

@@ -4,6 +4,7 @@ import { Loader } from '../../Loader';
 import { Search } from '../../Search/Search';
 import { useContext, useEffect } from 'react';
 import DataContext from '../../../context/podCast/dataContext';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	const { allData, getData, filteredData } = useContext(DataContext);
@@ -13,7 +14,7 @@ const Home = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	console.log('allData in Home', allData);
+	// console.log('allData in Home', allData);
 	return (
 		<>
 			<Search />
@@ -22,12 +23,9 @@ const Home = () => {
 					{!allData && <Loader />}
 					{filteredData?.map((e) => {
 						return (
-							<Cards
-								key={e.id}
-								name={e.name}
-								img={e.imageL}
-								author={e.author}
-							/>
+							<Link to={`/detail/${e.id}`} key={e.id}>
+								<Cards name={e.name} img={e.imageL} author={e.author} />
+							</Link>
 						);
 					})}
 				</div>
