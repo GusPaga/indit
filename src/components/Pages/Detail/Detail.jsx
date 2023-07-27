@@ -4,13 +4,14 @@ import { useContext, useEffect } from 'react';
 import DataContext from '../../../context/podCast/dataContext';
 
 export const Detail = () => {
-	const { allData, getDetail, detail, getAuthor, author, getEpisode } =
+	const { getDetail, detail, getAuthor, author, getEpisode } =
 		useContext(DataContext);
 	const { id } = useParams();
 
+	console.log('detail in detail', detail);
 	useEffect(() => {
 		getDetail(id);
-		getAuthor(id, allData);
+		getAuthor(id);
 		window.scroll({
 			top: 0,
 			behavior: 'smooth',
@@ -22,12 +23,9 @@ export const Detail = () => {
 		getEpisode(trackId);
 	};
 
-	console.log('id autor', id);
-	console.log('detail', detail);
-
 	return (
 		<>
-			<div id='detail' className='container mt-5'>
+			<div id='detail' className='container mt-1'>
 				<div className='row'>
 					<div className='col-4 card1 '>
 						<div className='card shadow-sm my-5 p-3'>
@@ -47,18 +45,18 @@ export const Detail = () => {
 					</div>
 
 					<div className='col-8 card2 '>
-						<div className='count rounded-1 shadow-sm mt-5 mb-3'>
-							NUMBER OF EPISODES: {detail?.length}
+						<div className='count rounded-1 shadow-sm p-3 fs-4 fw-bold mt-5 mb-3'>
+							Number of Episodes: {detail?.length}
 						</div>
 						<div className='table rounded-1 shadow-sm mb-5'>
-							<table className='table'>
-								<thead>
+							<table className='table table-striped table-hover '>
+								<thead className='fs-5'>
 									<th>#</th>
 									<th>Title</th>
 									<th>Date</th>
 									<th>Duration</th>
 								</thead>
-								<tbody>
+								<tbody className='fs-6 '>
 									{detail?.map((e, index) => {
 										return (
 											<tr>
@@ -69,18 +67,22 @@ export const Detail = () => {
 														key={e.trackId}
 													>
 														<button
-															value={e.trackId}
 															type='submit'
+															title='Go to listen'
+															data-bs-placement='top'
+															data-bs-toggle='tooltip'
+															className='text-lowercase'
+															value={e.trackId}
 															onClick={(e) => {
 																handleOnClick(e.target.value);
 															}}
 														>
-															{e.trackName}{' '}
+															{e.name}{' '}
 														</button>{' '}
 													</Link>
 												</td>
-												<td>{e.releaseDate}</td>
-												<td>{e.trackTimeMillis / (1000 * 60)} seg</td>
+												<td>{e.date}</td>
+												<td>{e.duration} seg</td>
 											</tr>
 										);
 									})}

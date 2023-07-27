@@ -20,18 +20,17 @@ export const Search = () => {
 	//	console.log('input in search', input);
 
 	return (
-		<div id='search' className='container'>
+		<div id='search' className='container-fluid'>
 			<div className='row justify-content-end '>
-				<div className='col-4 d-flex'>
+				<div className='col-4 d-flex p-2'>
 					{filteredData && (
-						<button
-							className='search btn btn-primary'
-							type='button'
-							data-bs-toggle='tooltip'
+						<span
+							className='badge bg-primary fs-6 fw-bold'
 							title='Number of item selected'
+							data-bs-toggle='tooltip'
 						>
 							{filteredData.length}
-						</button>
+						</span>
 					)}
 
 					<input

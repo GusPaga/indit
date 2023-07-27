@@ -5,7 +5,7 @@ export const NavBar = () => {
 	return (
 		<nav id='navbar' className='border-bottom d-flex mx-5 p-3'>
 			<div className='col-11'>
-				<Link to={'/home'}>
+				<Link to={'/home'} className='text-decoration-none fs-2'>
 					<span className='navbar-brand h1'>PodCaster</span>
 				</Link>
 			</div>

@@ -1,0 +1,29 @@
+#card {
+    margin-top: 10px;
+    height: 500px;
+    position: relative;
+
+    .image {
+        img {
+            left: 20%;
+            position: absolute;
+            top: 8%;
+            width: 248px;
+            border-radius: 150px 150px 150px 150px;
+            z-index: 2;
+        }
+
+    }
+
+    .text {
+        height: 260px;
+        left: 6%;
+        position: absolute;
+        top: 40%;
+        z-index: 1;
+
+        .card-title {
+            margin-top: 30%;
+        }
+    }
+}

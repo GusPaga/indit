@@ -19,7 +19,7 @@ const Home = () => {
 		<>
 			<Search />
 			<div id='cards' className='container-fluid rounded'>
-				<div className='card p-5'>
+				<div className='card p-3'>
 					{!allData && <Loader />}
 					{filteredData?.map((e) => {
 						return (

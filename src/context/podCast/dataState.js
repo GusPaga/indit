@@ -108,11 +108,23 @@ const DataState = (props) => {
 				}
 			};
 			const results = deleteOne(data);
-			//console.log('results', results);
+			const filter = results.map((e) => {
+				return {
+					title: e.trackName,
+					date: e.releaseDate.slice(0, 10),
+					duration: e.trackTimeMillis / (1000 * 60),
+					trackId: e.trackId,
+					name: e.trackName,
+					description: e.description,
+					url: e.episodeUrl,
+				};
+			});
+
+			console.log('data in state', data);
 
 			dispatch({
 				type: 'FIND_DETAIL',
-				payload: results,
+				payload: filter,
 			});
 		} catch (error) {
 			console.log({ 'Error in getDetail': error.message });
@@ -143,7 +155,7 @@ const DataState = (props) => {
 			console.log({ 'Error in getEpisode': error.message });
 		}
 	};
-
+	console.log('track in State', state.track);
 	return (
 		<DataContext.Provider
 			value={{

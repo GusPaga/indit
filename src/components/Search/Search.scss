@@ -2,9 +2,18 @@
     height: 50px;
     margin-top: 20px;
 
+
+    span {
+        width: 80px;
+    }
+
+    input {
+        width: 300px;
+
+    }
+
     .search {
         color: black;
-
         height: 30px;
         border-radius: 5px;
         border: 1px solid rgb(0, 0, 0, 0.5);
