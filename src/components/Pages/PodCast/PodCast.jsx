@@ -2,14 +2,14 @@ import { useContext, useEffect } from 'react';
 import DataContext from '../../../context/podCast/dataContext';
 import { Link } from 'react-router-dom';
 import './PodCast.scss';
+import { Author } from '../../Others/Author';
+import { scroll } from '../../../helpers/scroll';
+
 export const Podcast = () => {
 	const { author, track } = useContext(DataContext);
 
 	useEffect(() => {
-		window.scroll({
-			top: 0,
-			behavior: 'smooth',
-		});
+		scroll();
 	}, []);
 
 	const createLinks = (literal) => {
@@ -36,24 +36,7 @@ export const Podcast = () => {
 		<div>
 			<div id='detail' className='container mt-5'>
 				<div className='row'>
-					<div className='col-4 card1 '>
-						<div className='card shadow-sm my-5 p-3'>
-							<img
-								src={author.imageL}
-								className='card-img-top'
-								alt={author.imageL}
-							/>
-							<div className='card-body'>
-								<h4 className='card-title text-center'>{author.author}</h4>
-								<p className='card-text'>by: "{author.name}"</p>
-							</div>
-							<ul className='list-group list-group-flush'>
-								<li className='list-group-item fst-italic'>
-									"{author.summary}"
-								</li>
-							</ul>
-						</div>
-					</div>
+					<Author />
 
 					<div className='col-8 card2 '>
 						<div className='col-8 card2 w-100 h-100'>
@@ -68,9 +51,18 @@ export const Podcast = () => {
 										aria-label='Close'
 										data-bs-toggle='tooltip'
 										data-bs-placement='top'
-										title='Close'
+										title='Go Back'
 									>
-										X
+										<svg
+											xmlns='http://www.w3.org/2000/svg'
+											width='30'
+											height='25'
+											fill='currentColor'
+											class='bi bi-backspace-fill'
+											viewBox='0 0 16 16'
+										>
+											<path d='M15.683 3a2 2 0 0 0-2-2h-7.08a2 2 0 0 0-1.519.698L.241 7.35a1 1 0 0 0 0 1.302l4.843 5.65A2 2 0 0 0 6.603 15h7.08a2 2 0 0 0 2-2V3zM5.829 5.854a.5.5 0 1 1 .707-.708l2.147 2.147 2.146-2.147a.5.5 0 1 1 .707.708L9.39 8l2.146 2.146a.5.5 0 0 1-.707.708L8.683 8.707l-2.147 2.147a.5.5 0 0 1-.707-.708L7.976 8 5.829 5.854z' />
+										</svg>
 									</button>
 								</Link>
 

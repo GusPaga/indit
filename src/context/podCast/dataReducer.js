@@ -4,6 +4,7 @@ import {
 	FIND_DETAIL,
 	FIND_EPISODE,
 	GET_DATA,
+	SET_LOADER,
 } from '../types';
 
 const DataReducer = (state, action) => {
@@ -34,6 +35,11 @@ const DataReducer = (state, action) => {
 			return {
 				...state,
 				track: payload,
+			};
+		case SET_LOADER:
+			return {
+				...state,
+				loader: payload,
 			};
 		default: {
 			return {

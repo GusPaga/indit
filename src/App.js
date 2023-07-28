@@ -7,7 +7,7 @@ import {
 import Home from './components/Pages/Home/Home';
 import DataState from './context/podCast/dataState';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { NavBar } from './components/NavBar/NavBar';
+import { NavBar } from './components/Others/NavBar/NavBar.jsx';
 import { Detail } from './components/Pages/Detail/Detail';
 import { Podcast } from './components/Pages/PodCast/PodCast';
 

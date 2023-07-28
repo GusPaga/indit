@@ -2,20 +2,20 @@ import './Detail.scss';
 import { Link, useParams } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import DataContext from '../../../context/podCast/dataContext';
+import { Author } from '../../Others/Author';
+import { scroll } from '../../../helpers/scroll';
 
 export const Detail = () => {
-	const { getDetail, detail, getAuthor, author, getEpisode } =
+	const { getDetail, detail, getAuthor, getEpisode, setLoader } =
 		useContext(DataContext);
 	const { id } = useParams();
 
-	console.log('detail in detail', detail);
 	useEffect(() => {
+		setLoader(true);
 		getDetail(id);
 		getAuthor(id);
-		window.scroll({
-			top: 0,
-			behavior: 'smooth',
-		});
+		scroll();
+		setLoader(false);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id]);
 
@@ -27,22 +27,7 @@ export const Detail = () => {
 		<>
 			<div id='detail' className='container mt-1'>
 				<div className='row'>
-					<div className='col-4 card1 '>
-						<div className='card shadow-sm my-5 p-3'>
-							<img
-								src={author.imageL}
-								className='card-img-top'
-								alt={author.imageL}
-							/>
-							<div className='card-body'>
-								<h4 className='card-title text-center'>{author.author}</h4>
-								<p className='card-text'>by: "{author.name}"</p>
-							</div>
-							<ul className='list-group list-group-flush'>
-								<li className='list-group-item'>"{author.summary}"</li>
-							</ul>
-						</div>
-					</div>
+					<Author />
 
 					<div className='col-8 card2 '>
 						<div className='count rounded-1 shadow-sm p-3 fs-4 fw-bold mt-5 mb-3'>

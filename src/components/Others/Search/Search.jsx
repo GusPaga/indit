@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import DataContext from '../../context/podCast/dataContext';
+import DataContext from '../../../context/podCast/dataContext';
 import './Search.scss';
 
 export const Search = () => {

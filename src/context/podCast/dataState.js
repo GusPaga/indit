@@ -10,6 +10,7 @@ const DataState = (props) => {
 		detail: [],
 		allData: [],
 		filteredData: [],
+		loader: false,
 	};
 	const [state, dispatch] = useReducer(DataReducer, initialState);
 
@@ -50,9 +51,6 @@ const DataState = (props) => {
 	};
 
 	const filterByName = (name) => {
-		// console.log("input in filterByName", name);
-		// console.log("data in filterByName", allData);
-
 		try {
 			if (!name || name === ' ') {
 				return state.allData;
@@ -87,7 +85,6 @@ const DataState = (props) => {
 	};
 
 	const getDetail = async (id) => {
-		// console.log("id in data state", id);
 		try {
 			const URL = `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20`;
 
@@ -119,9 +116,6 @@ const DataState = (props) => {
 					url: e.episodeUrl,
 				};
 			});
-
-			console.log('data in state', data);
-
 			dispatch({
 				type: 'FIND_DETAIL',
 				payload: filter,
@@ -155,11 +149,25 @@ const DataState = (props) => {
 			console.log({ 'Error in getEpisode': error.message });
 		}
 	};
-	console.log('track in State', state.track);
+
+	const setLoader = async (data) => {
+		try {
+			console.log('data in setLoader', data);
+			dispatch({
+				type: 'SET_LOADER',
+				payload: data,
+			});
+		} catch (error) {
+			console.log({ 'Error in setLoader': error.message });
+		}
+	};
+
+	console.log('loader state', state.loader);
 	return (
 		<DataContext.Provider
 			value={{
 				getData,
+				setLoader,
 				getAuthor,
 				getDetail,
 				getEpisode,
@@ -168,6 +176,7 @@ const DataState = (props) => {
 				author: state.author,
 				detail: state.detail,
 				allData: state.allData,
+				loader: state.loader,
 				filteredData: state.filteredData,
 			}}
 		>
