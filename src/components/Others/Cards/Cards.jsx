@@ -1,4 +1,6 @@
 import './Cards.scss';
+
+//This function render every individual card
 export const Cards = ({ img, name, author }) => {
 	return (
 		<div id='card'>

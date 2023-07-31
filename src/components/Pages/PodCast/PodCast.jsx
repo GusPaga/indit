@@ -1,9 +1,9 @@
-import { useContext, useEffect } from 'react';
-import DataContext from '../../../context/podCast/dataContext';
-import { Link } from 'react-router-dom';
 import './PodCast.scss';
+import { Link } from 'react-router-dom';
 import { Author } from '../../Others/Author';
+import { useContext, useEffect } from 'react';
 import { scroll } from '../../../helpers/scroll';
+import DataContext from '../../../context/podCast/dataContext';
 
 export const Podcast = () => {
 	const { author, track } = useContext(DataContext);

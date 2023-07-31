@@ -21,12 +21,19 @@
 // };
 // console.log(separarEnlaces(text));
 
-const dateString = '2023-07-21';
+// const dateString = '2023-07-21';
 
 // Crear un objeto de fecha usando la cadena
-const date = new Date(dateString);
+// const date = new Date(dateString);
 
 // Obtener la fecha y hora en la zona horaria local
-const fechaLocal = date.toLocaleString();
+// const fechaLocal = date.toLocaleString();
 
-console.log(fechaLocal);
+// console.log(fechaLocal);
+
+const timeMili = 13986000;
+
+const hours = Math.floor(timeMili / (1000 * 60 * 60));
+const minutes = Math.floor((timeMili / (1000 * 60)) % 60);
+
+console.log(`${hours}:${minutes}`);

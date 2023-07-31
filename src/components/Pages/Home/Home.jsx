@@ -10,8 +10,7 @@ const Home = () => {
 
 	useEffect(() => {
 		setLoader(true);
-		console.log('send true');
-		getData();
+		setInterval(getData(), 86400000);
 		setLoader(false);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);

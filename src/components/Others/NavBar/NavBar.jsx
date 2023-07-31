@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { Loader } from '../../Others/Loader';
 import DataContext from '../../../context/podCast/dataContext';
 
+//This function render the navBar whit the brand and loader
 export const NavBar = () => {
 	const { loader } = useContext(DataContext);
-	console.log('loading in navBar', loader);
 	return (
 		<nav id='navbar' className='border-bottom d-flex mx-5 p-3'>
 			<div className='col-11'>

@@ -107,13 +107,13 @@ const DataState = (props) => {
 			const results = deleteOne(data);
 			const filter = results.map((e) => {
 				return {
-					title: e.trackName,
-					date: e.releaseDate.slice(0, 10),
-					duration: e.trackTimeMillis / (1000 * 60),
-					trackId: e.trackId,
-					name: e.trackName,
-					description: e.description,
-					url: e.episodeUrl,
+					title: e.trackName ? e.trackName : 'unavailable',
+					date: e.releaseDate ? e.releaseDate.slice(0, 10) : 'unavailable',
+					duration: e.trackTimeMillis ? e.trackTimeMillis : 'unavailable',
+					trackId: e.trackId ? e.trackId : 'unavailable',
+					name: e.trackName ? e.trackName : 'unavailable',
+					description: e.description ? e.description : 'unavailable',
+					url: e.episodeUrl ? e.episodeUrl : 'unavailable',
 				};
 			});
 			dispatch({
@@ -152,7 +152,7 @@ const DataState = (props) => {
 
 	const setLoader = async (data) => {
 		try {
-			console.log('data in setLoader', data);
+			// console.log('data in setLoader', data);
 			dispatch({
 				type: 'SET_LOADER',
 				payload: data,
@@ -162,7 +162,6 @@ const DataState = (props) => {
 		}
 	};
 
-	console.log('loader state', state.loader);
 	return (
 		<DataContext.Provider
 			value={{

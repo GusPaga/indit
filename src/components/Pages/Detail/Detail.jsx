@@ -1,9 +1,10 @@
 import './Detail.scss';
-import { Link, useParams } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
-import DataContext from '../../../context/podCast/dataContext';
 import { Author } from '../../Others/Author';
+import { useContext, useEffect } from 'react';
 import { scroll } from '../../../helpers/scroll';
+import { Link, useParams } from 'react-router-dom';
+import { convertTime } from '../../../helpers/convertTime';
+import DataContext from '../../../context/podCast/dataContext';
 
 export const Detail = () => {
 	const { getDetail, detail, getAuthor, getEpisode, setLoader } =
@@ -12,7 +13,7 @@ export const Detail = () => {
 
 	useEffect(() => {
 		setLoader(true);
-		getDetail(id);
+		setInterval(getDetail(id), 86400000);
 		getAuthor(id);
 		scroll();
 		setLoader(false);
@@ -34,19 +35,21 @@ export const Detail = () => {
 							Number of Episodes: {detail?.length}
 						</div>
 						<div className='table rounded-1 shadow-sm mb-5'>
-							<table className='table table-striped table-hover '>
+							<table className='table table-striped table-hover text-center'>
 								<thead className='fs-5'>
-									<th>#</th>
-									<th>Title</th>
-									<th>Date</th>
-									<th>Duration</th>
+									<tr>
+										<th>#</th>
+										<th>Title</th>
+										<th>Date</th>
+										<th>H : M</th>
+									</tr>
 								</thead>
 								<tbody className='fs-6 '>
 									{detail?.map((e, index) => {
 										return (
-											<tr>
+											<tr key={index}>
 												<td>{index + 1}</td>
-												<td>
+												<td className='text-start'>
 													<Link
 														to={`/detail/${id}/podcast/${e.trackId}`}
 														key={e.trackId}
@@ -67,7 +70,7 @@ export const Detail = () => {
 													</Link>
 												</td>
 												<td>{e.date}</td>
-												<td>{e.duration} seg</td>
+												<td>{convertTime(e.duration)}</td>
 											</tr>
 										);
 									})}

@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import DataContext from '../../../context/podCast/dataContext';
 import './Search.scss';
 
+// This function render the searchBar with your input zone and quantity of car selected
 export const Search = () => {
 	const { getData, filteredData, filterByName, allData } =
 		useContext(DataContext);
@@ -15,9 +16,6 @@ export const Search = () => {
 		setInput(e.target.value);
 		filterByName(input, allData);
 	};
-
-	// console.log('data in Search', filteredData);
-	//	console.log('input in search', input);
 
 	return (
 		<div id='search' className='container-fluid'>

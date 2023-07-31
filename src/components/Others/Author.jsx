@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import DataContext from '../../context/podCast/dataContext';
 
+//This function render the author component in pages: Detail and PodCast.
 export const Author = () => {
 	const { author } = useContext(DataContext);
 	return (

@@ -1,3 +1,4 @@
+//This function render the Loader component
 export const Loader = () => {
 	return (
 		<div className='d-flex justify-content-center '>
