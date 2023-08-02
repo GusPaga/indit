@@ -5,6 +5,7 @@ import { useContext, useEffect } from 'react';
 import DataContext from '../../../context/podCast/dataContext';
 import { Link } from 'react-router-dom';
 
+//This function render the component Home.
 const Home = () => {
 	const { getData, filteredData, setLoader } = useContext(DataContext);
 

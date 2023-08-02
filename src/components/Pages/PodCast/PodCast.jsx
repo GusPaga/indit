@@ -5,6 +5,7 @@ import { useContext, useEffect } from 'react';
 import { scroll } from '../../../helpers/scroll';
 import DataContext from '../../../context/podCast/dataContext';
 
+//This function render the PodCast component.
 export const Podcast = () => {
 	const { author, track } = useContext(DataContext);
 
