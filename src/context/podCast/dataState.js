@@ -2,6 +2,7 @@
 import { useReducer } from 'react';
 import DataContext from './dataContext';
 import DataReducer from './dataReducer';
+import { FindNeedle } from '../../helpers/findNeedle';
 
 const DataState = (props) => {
 	const initialState = {
@@ -14,6 +15,7 @@ const DataState = (props) => {
 	};
 	const [state, dispatch] = useReducer(DataReducer, initialState);
 
+	//This function requests the information from the server and renders it.
 	const getData = async () => {
 		try {
 			const URL =
@@ -43,13 +45,7 @@ const DataState = (props) => {
 		}
 	};
 
-	const FindNeedle = (haystack, needle) => {
-		for (let i = 0; i < haystack.length; i++) {
-			if (haystack.slice(i, needle.length + i) === needle) return i;
-		}
-		return -1;
-	};
-
+	//This function receive one or more characters from searchBar and then find it in state.allData. Finally stores it in filteredData
 	const filterByName = (name) => {
 		try {
 			if (!name || name === ' ') {
@@ -74,7 +70,6 @@ const DataState = (props) => {
 					return e;
 				}
 			});
-			//   console.log("filter", search);
 			dispatch({
 				type: 'FIND_DATA',
 				payload: search,
@@ -84,20 +79,21 @@ const DataState = (props) => {
 		}
 	};
 
+	//This function get all podcast of selected author.
 	const getDetail = async (id) => {
 		try {
 			const URL = `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20`;
 
 			const response = await fetch(URL);
 			const data = await response.json();
-			//console.log('data in getDetail', data.results);
+
+			//This function delete the first element of "const data" because that element does not contain information.
 			const deleteOne = () => {
 				const wrapperType = 'track';
 				const index = data.results.findIndex(
 					(e) => e.wrapperType === wrapperType,
 				);
 
-				//function to remove index "0"
 				if (index !== -1) {
 					const newData = [...data.results];
 					newData.splice(index, 1);
@@ -125,6 +121,7 @@ const DataState = (props) => {
 		}
 	};
 
+	//This function get all data of the selected author, to render in detail and podCast.
 	const getAuthor = async (id) => {
 		try {
 			const findAuthor = state.allData.filter((e) => e.id === id);
@@ -137,6 +134,7 @@ const DataState = (props) => {
 		}
 	};
 
+	//This function get the information of selected podCast.
 	const getEpisode = async (trackId) => {
 		try {
 			// eslint-disable-next-line eqeqeq
@@ -150,9 +148,9 @@ const DataState = (props) => {
 		}
 	};
 
+	//This function handles the state loader to render or not in the navBar.
 	const setLoader = async (data) => {
 		try {
-			// console.log('data in setLoader', data);
 			dispatch({
 				type: 'SET_LOADER',
 				payload: data,
