@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import { convertTime } from '../../../helpers/convertTime';
 import DataContext from '../../../context/podCast/dataContext';
 
+//This function render the page Detail.
 export const Detail = () => {
 	const { getDetail, detail, getAuthor, getEpisode, setLoader } =
 		useContext(DataContext);
