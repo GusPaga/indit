@@ -1,3 +1,4 @@
+//This function positions the screen at the top.
 export const scroll = () => {
 	try {
 		window.scroll({
