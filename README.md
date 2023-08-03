@@ -32,7 +32,7 @@ frameworks específicos AngularJS y Ember.
 
 ### Screenshot
 
-  <img src='../indit/src/components/Assets/vista principal.png'  alt="landing"/>
+  <img src='src/components/Assets/vista principal.png'  alt="landing"/>
 <br>
 
 Requerimientos:
