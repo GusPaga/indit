@@ -68,7 +68,7 @@ Requerimientos:
 
 ### Screenshot
 
-  <img src='../indit/src/components/Assets/vista detalle.png'  alt="detail"/>
+  <img src='src/components/Assets/vista detalle.png'  alt="detail"/>
 <br>
 
 Requerimientos:
@@ -88,7 +88,7 @@ Requerimientos:
 
 ### Screenshot
 
-<img src="../indit/src/components/Assets/detalle podcast.png" alt="podcast">
+<img src="src/components/Assets/detalle podcast.png" alt="podcast">
 
 <br>
 
