@@ -1,0 +1,16 @@
+#cards {
+
+    a {
+        width: 100%;
+        text-decoration: none;
+        color: black;
+    }
+
+    .card {
+        // background-color: green;
+        border: none;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        justify-items: center;
+    }
+}

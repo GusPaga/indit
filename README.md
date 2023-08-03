@@ -1,70 +1,122 @@
-# Getting Started with Create React App
+# Prueba front end INDITEX
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esta prueba consiste en la creación de una mini-aplicación para escuchar podcasts
+musicales.
+La aplicación tendrá únicamente tres vistas:
 
-## Available Scripts
+1. Vista principal
+2. Detalles de un podcast
+3. Detalles de un capítulo de un podcast:
 
-In the project directory, you can run:
+El diseño de las vistas se debe ceñir al mostrado junto a la descripción del detalle de
+las mismas (más abajo).
+La aplicación será una Single Page Application de manera que la navegación se realizará
+siempre en cliente, sin refrescar completamente el documento principal en ningún
+momento.
+La aplicación deberá tener un modo development en el que se sirvan los assets sin
+minimizar (pueden estar concatenados si se quiere) y otro modo production donde se
+deben servir los assets concatenados y minimizados.
+El objetivo final de la prueba es presentar un repositorio de código público (Github o
+Bitbucket) con la solución desarrollada. Es deseable que se vaya subiendo código a
+medida que se va avanzando en las diferentes secciones del proyecto (utilizando tags
+para dejar marcas de cada paso relevante) para poder evaluar la evolución de la
+implementación. En el repositorio deberá existir un archivo nombrado README donde
+se explicará cómo ejecutar la aplicación en ambos modos solicitados.
+Restricciones
+• Las URLs deberán ser limpias de modo que no se permite el uso del hash
+(#) para gestionar el enrutado.
+• Está permitido el uso de cualquier librería JS/CSS salvo los
+frameworks específicos AngularJS y Ember.
 
-### `npm start`
+# Vista principal
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Screenshot
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  <img src='../indit/src/components/Assets/vista principal.png'  alt="landing"/>
+<br>
 
-### `npm test`
+Requerimientos:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Mostrar el listado de los 100 podcasts más populares según el listado de Apple
+  (más info al final del documento).
+- Una vez obtenido el listado desde el servicio externo por primera vez se
+  deberá almacenar en cliente de manera que solo se vuelva a solicitar si ha
+  pasado más de un día desde la última vez que se solicitó.
+- El usuario podrá filtrar los podcasts mostrados introduciendo una cadena de
+  texto que tendrá en cuenta tanto el título de los podcasts así como los nombres
+  de sus autores.
+- El filtrado deberá ser inmediato de manera que reaccione a medida que el
+  usuario vaya introduciendo su texto de filtrado.
+- Al pulsar sobre un podcast el usuario deberá navegar a la vista con el detalle del
+  mismo.
 
-### `npm run build`
+## Descripción de la vista
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Requerimientos:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- El título de la aplicación deberá actuar como enlace a la vista principal de la
+  aplicación.
+- Cada vez que se inicie una navegación en cliente se debe mostrar algún tipo de
+  indicador visual en la esquina superior derecha de la página para reflejar que el
+  proceso está en marcha. Dicho indicador deberá desaparecer tras finalizar la
+  transición a la nueva vista.
+  <br>
+  <br>
+  <br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Vista detalle
 
-### `npm run eject`
+### Screenshot
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  <img src='../indit/src/components/Assets/vista detalle.png'  alt="detail"/>
+<br>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Requerimientos:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Se debe mostrar una barra lateral con la imagen del podcast, su título, su
+  autor y su descripción.
+- Se debe mostrar una sección principal donde se visualizará el número de episodios
+  que actualmente tiene el podcast así como un listado de los mismos indicando su
+  título, fecha de publicación y duración.
+- Una vez obtenido el detalle de un podcast desde el servicio externo por primera
+  vez, se deberá almacenar en cliente de manera que solo se vuelva a solicitar si ha
+  pasado un día desde la última vez que se solicitó.
+- Al pulsar sobre el título de un episodio se deberá navegar a la vista con el
+  detalle del mismo.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Vista detalle podcast
 
-## Learn More
+### Screenshot
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<img src="../indit/src/components/Assets/detalle podcast.png" alt="podcast">
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br>
 
-### Code Splitting
+Requerimientos:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Se debe mostrar la misma barra lateral que en la vista anterior.
+  Tanto la imagen como el título del podcast y el autor deben ser enlaces a
+  la vista con el detalle del podcast (se permite que estos componentes
+  también tengan los mismos enlaces en la vista anterior).
+- Se debe mostrar una sección principal donde se visualizará el título del
+  podcast, su descripción y un reproductor de audio básico (nativo HTML5)
+  para reproducir el podcast.
+- Se deberá tener en cuenta que algunas descripciones de episodios
+  contienen HTML y este se debe mostrar interpretado (no escapado).
+  <br>
+  <br>
+  <br>
 
-### Analyzing the Bundle Size
+# Requisitos del Proyecto:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Para correr el proyecto es necesario tener instalado [Node JS](https://nodejs.org/es) y NPM
 
-### Making a Progressive Web App
+## Instalación:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- desde un terminal debe ingresar a la carpeta indit con el comando: "cd indit".
+- posteriormente ejecutar el comando "npm install".
 
-### Advanced Configuration
+## Ejecución:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- desde un terminal debe ingresar a la carpeta indit con el comando: "cd indit".
+- posteriormente ejecutar el comando "npm start".
