@@ -6,6 +6,7 @@ import DataContext from '../../../context/podCast/dataContext';
 //This function render the navBar whit the brand and loader
 export const NavBar = () => {
 	const { loader } = useContext(DataContext);
+	console.log({ loader });
 	return (
 		<nav id='navbar' className='border-bottom d-flex mx-5 p-3'>
 			<div className='col-11'>

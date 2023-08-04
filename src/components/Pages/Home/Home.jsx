@@ -7,12 +7,10 @@ import { Link } from 'react-router-dom';
 
 //This function render the component Home.
 const Home = () => {
-	const { getData, filteredData, setLoader } = useContext(DataContext);
+	const { getData, filteredData } = useContext(DataContext);
 
 	useEffect(() => {
-		setLoader(true);
 		setInterval(getData(), 86400000);
-		setLoader(false);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

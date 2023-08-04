@@ -18,6 +18,10 @@ const DataState = (props) => {
 	//This function requests the information from the server and renders it.
 	const getData = async () => {
 		try {
+			dispatch({
+				type: 'SET_LOADER',
+				payload: true,
+			});
 			const URL =
 				'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json';
 
@@ -39,6 +43,10 @@ const DataState = (props) => {
 			dispatch({
 				type: 'GET_DATA',
 				payload: podCastFiltered,
+			});
+			dispatch({
+				type: 'SET_LOADER',
+				payload: false,
 			});
 		} catch (error) {
 			console.log({ 'error in getData': error.message });
@@ -150,6 +158,7 @@ const DataState = (props) => {
 
 	//This function handles the state loader to render or not in the navBar.
 	const setLoader = async (data) => {
+		console.log({ data });
 		try {
 			dispatch({
 				type: 'SET_LOADER',
