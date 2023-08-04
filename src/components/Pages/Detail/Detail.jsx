@@ -8,16 +8,13 @@ import DataContext from '../../../context/podCast/dataContext';
 
 //This function render the page Detail.
 export const Detail = () => {
-	const { getDetail, detail, getAuthor, getEpisode, setLoader } =
-		useContext(DataContext);
+	const { getDetail, detail, getAuthor, getEpisode } = useContext(DataContext);
 	const { id } = useParams();
 
 	useEffect(() => {
-		setLoader(true);
 		setInterval(getDetail(id), 86400000);
 		getAuthor(id);
 		scroll();
-		setLoader(false);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id]);
 

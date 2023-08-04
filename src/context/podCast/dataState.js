@@ -56,6 +56,10 @@ const DataState = (props) => {
 	//This function receive one or more characters from searchBar and then find it in state.allData. Finally stores it in filteredData
 	const filterByName = (name) => {
 		try {
+			dispatch({
+				type: 'SET_LOADER',
+				payload: true,
+			});
 			if (!name || name === ' ') {
 				return state.allData;
 			}
@@ -82,6 +86,10 @@ const DataState = (props) => {
 				type: 'FIND_DATA',
 				payload: search,
 			});
+			dispatch({
+				type: 'SET_LOADER',
+				payload: false,
+			});
 		} catch (error) {
 			console.log('Fail filterByName', error.message);
 		}
@@ -90,6 +98,10 @@ const DataState = (props) => {
 	//This function get all podcast of selected author.
 	const getDetail = async (id) => {
 		try {
+			dispatch({
+				type: 'SET_LOADER',
+				payload: true,
+			});
 			const URL = `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20`;
 
 			const response = await fetch(URL);
@@ -124,6 +136,10 @@ const DataState = (props) => {
 				type: 'FIND_DETAIL',
 				payload: filter,
 			});
+			dispatch({
+				type: 'SET_LOADER',
+				payload: false,
+			});
 		} catch (error) {
 			console.log({ 'Error in getDetail': error.message });
 		}
@@ -132,10 +148,18 @@ const DataState = (props) => {
 	//This function get all data of the selected author, to render in detail and podCast.
 	const getAuthor = async (id) => {
 		try {
+			dispatch({
+				type: 'SET_LOADER',
+				payload: true,
+			});
 			const findAuthor = state.allData.filter((e) => e.id === id);
 			dispatch({
 				type: 'FIND_AUTHOR',
 				payload: findAuthor[0],
+			});
+			dispatch({
+				type: 'SET_LOADER',
+				payload: false,
 			});
 		} catch (error) {
 			console.log({ 'Error in getDetail': error.message });
@@ -145,11 +169,19 @@ const DataState = (props) => {
 	//This function get the information of selected podCast.
 	const getEpisode = async (trackId) => {
 		try {
+			dispatch({
+				type: 'SET_LOADER',
+				payload: true,
+			});
 			// eslint-disable-next-line eqeqeq
 			const findEpisode = state.detail.filter((e) => e.trackId == trackId);
 			dispatch({
 				type: 'FIND_EPISODE',
 				payload: findEpisode[0],
+			});
+			dispatch({
+				type: 'SET_LOADER',
+				payload: false,
 			});
 		} catch (error) {
 			console.log({ 'Error in getEpisode': error.message });
@@ -158,7 +190,6 @@ const DataState = (props) => {
 
 	//This function handles the state loader to render or not in the navBar.
 	const setLoader = async (data) => {
-		console.log({ data });
 		try {
 			dispatch({
 				type: 'SET_LOADER',
