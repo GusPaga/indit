@@ -115,8 +115,18 @@ Para correr el proyecto es necesario tener instalado [Node JS](https://nodejs.or
 
 - desde un terminal debe ingresar a la carpeta indit con el comando: "cd indit".
 - posteriormente ejecutar el comando "npm install".
+  <br>
+  <br>
 
 ## Ejecución:
 
+### Modo Desarrollo:
+
 - desde un terminal debe ingresar a la carpeta indit con el comando: "cd indit".
 - posteriormente ejecutar el comando "npm start".
+  <br>
+
+### Modo Producción:
+
+- desde un terminal debe ingresar a la carpeta indit con el comando: "cd indit".
+- posteriormente ejecutar el comando "npm run serve".
