@@ -36,10 +36,10 @@ export const Detail = () => {
 							<table className='table table-striped table-hover text-center'>
 								<thead className='fs-5'>
 									<tr>
-										<th>#</th>
-										<th>Title</th>
-										<th>Date</th>
-										<th>H : M</th>
+										<th className='col-1'>#</th>
+										<th className='col-7'>Title</th>
+										<th className='col-2'>Date</th>
+										<th className='col-2'>H : M</th>
 									</tr>
 								</thead>
 								<tbody className='fs-6 '>
@@ -67,8 +67,10 @@ export const Detail = () => {
 														</button>{' '}
 													</Link>
 												</td>
-												<td>{e.date}</td>
-												<td>{convertTime(e.duration)}</td>
+												<td className='align-middle'>{e.date}</td>
+												<td className='align-middle'>
+													{convertTime(e.duration)}
+												</td>
 											</tr>
 										);
 									})}
