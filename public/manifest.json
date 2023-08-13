@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "INDITEX",
+  "name": "Technical probe for hublab an INDITEX",
   "icons": [
     {
       "src": "favicon.ico",
@@ -23,7 +23,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "https://guspaga.github.io/indit/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
