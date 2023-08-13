@@ -32,7 +32,7 @@ frameworks específicos AngularJS y Ember.
 
 ### Screenshot
 
-  <img src='src/components/Assets/vista principal.png'  alt="landing"/>
+  <img src='src/components/Assets/img/vista principal.png'  alt="landing"/>
 <br>
 
 Requerimientos:
@@ -68,7 +68,7 @@ Requerimientos:
 
 ### Screenshot
 
-  <img src='src/components/Assets/vista detalle.png'  alt="detail"/>
+  <img src='src/components/Assets/img/vista detalle.png'  alt="detail"/>
 <br>
 
 Requerimientos:
@@ -88,7 +88,7 @@ Requerimientos:
 
 ### Screenshot
 
-<img src="src/components/Assets/detalle podcast.png" alt="podcast">
+<img src="src/components/Assets/img/detalle podcast.png" alt="podcast">
 
 <br>
 
