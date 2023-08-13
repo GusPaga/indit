@@ -23,7 +23,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://guspaga.github.io/indit/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
